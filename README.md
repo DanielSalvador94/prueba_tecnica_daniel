@@ -1,66 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### CONFIGURACIÓN Y INSTALACIÓN DE LA APLICACIÓN EN UN ENTORNO LOCAL CON WINDOWS Y WSL2
 
-## About Laravel
+### Paso 1: Instalar Docker Desktop
+    -Descargar Docker Desktop desde aquí https://www.docker.com/products/docker-desktop/-
+    -Completar la instalación siguiendo las instrucciones. 
+    -Asegurarse de que Docker Desktop esté en funcionamiento.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Paso 2: Activar la Virtualización
+    -Reiniciar el ordenador y acceder a la BIOS (presionar F2 o Supr durante el arranque).
+    -Activar la opción de virtualización (puede llamarse "Virtualization Technology" o "Intel Virtualization Technology").
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Paso 3: Instalar Windows Terminal
+    -Abrir Microsoft Store desde el menú Inicio.
+    -Buscar "Windows Terminal" en la barra de búsqueda.
+    -Seleccionar "Windows Terminal" y hacer clic en "Instalar".
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Paso 4: Instalar Ubuntu 20.04
+    -Abrir Microsoft Store desde el menú Inicio.
+    -Buscar "Ubuntu 20.04" en la barra de búsqueda.
+    -Seleccionar "Ubuntu 20.04" y hacer clic en "Instalar".
 
-## Learning Laravel
+### Paso 5: Clonar el Repositorio
+    -Abrir Ubuntu Terminal (buscar "Terminal" en la barra de búsqueda y seleccionar la de Ubuntu).
+    -Navegar a la ubicación deseada:
+     cd /ruta/del/directorio
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    -Clonar el repositorio:
+     git clone https://github.com/DanielSalvador94/prueba_tecnica_daniel.git
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Paso 6: Acceder al Repositorio del Proyecto
+    -En la terminal de Ubuntu, acceder al directorio del proyecto:
+     cd prueba_tecnica_daniel
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    -Ejecutar en la terminal
+     docker run --rm \
+     -u "$(id -u):$(id -g)" \
+     -v $(pwd):/var/www/html \
+     -w /var/www/html \
+     laravelsail/php81-composer:latest \
+     composer install --ignore-platform-reqs
 
-## Laravel Sponsors
+### Paso 7 Configurar el Entorno y la Base de Datos
+    -Duplicar el archivo .env.example y renómbrarlo como .env:
+     cp .env.example .env
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Paso 8: Inicializar Laravel Sail con Docker
+    Iniciar Laravel Sail usando Docker:
 
-### Premium Partners
+    ./vendor/bin/sail up -d
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Paso 9: Cambiar Alias para Laravel Sail
 
-## Contributing
+    -Abrir el archivo .zshrc con el comando:
+     nano ~/.zshrc
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    -Agregar la siguiente línea para definir un alias para Laravel Sail:
+     alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
-## Code of Conduct
+    -Guardar y cerrar el archivo.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Paso 10 Configurar el Entorno y la Base de Datos
+    -Generar la clave de la aplicación:
+     sail php artisan key:generate
 
-## Security Vulnerabilities
+    -Generar las tablas y datos de la base de datos:
+     sail artisan migrate --seed
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    -Instalar paquete NPM
+     sail npm install
 
-## License
+### Paso 11: Iniciar la Aplicación en Local
+    -Iniciar la compilación de los recursos de la aplicación:
+     sail npm run dev
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Paso 12 Acceder al navegador
+    -Escribir en la barra de navegador http://localhost/
