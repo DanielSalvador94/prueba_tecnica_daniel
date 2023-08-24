@@ -1,5 +1,9 @@
 
-### CONFIGURACIÓN Y INSTALACIÓN DE LA APLICACIÓN EN UN ENTORNO LOCAL CON WINDOWS Y WSL2
+## 1 CONFIGURACIÓN Y INSTALACIÓN DE LA APLICACIÓN EN UN ENTORNO LOCAL CON WINDOWS Y WSL2
+
+He optado por crear un entorno local Dockerizado utilizando Laravel Sail y Mysql desde cero. Esto me ha permitido establecer un entorno de desarrollo consistente y aislado que facilita el desarrollo, las pruebas y la identificación temprana de problemas en mi aplicación Laravel.
+
+Los pasos para su instalacion son:
 
 ### Paso 1: Instalar Docker Desktop
     -Descargar Docker Desktop desde aquí https://www.docker.com/products/docker-desktop/-
@@ -40,7 +44,7 @@
      laravelsail/php81-composer:latest \
      composer install --ignore-platform-reqs
 
-### Paso 7 Configurar el Entorno y la Base de Datos
+### Paso 7: Configurar el Entorno y la Base de Datos
     -Duplicar el archivo .env.example y renómbrarlo como .env:
      cp .env.example .env
 
@@ -59,7 +63,7 @@
 
     -Guardar y cerrar el archivo.
 
-### Paso 10 Configurar el Entorno y la Base de Datos
+### Paso 10: Configurar el Entorno y la Base de Datos
     -Generar la clave de la aplicación:
      sail php artisan key:generate
 
@@ -73,5 +77,19 @@
     -Iniciar la compilación de los recursos de la aplicación:
      sail npm run dev
 
-### Paso 12 Acceder al navegador
+### Paso 12: Acceder al navegador
     -Escribir en la barra de navegador http://localhost/
+
+
+## 2 ANALISIS DE RENDIMIENTO EN LAS CONSULTAS
+
+ ### Uso de "Benchmarking":
+  -He aprovechado la herramienta incorporada en Laravel conocida como "Benchmarking" para medir con precisión el tiempo que lleva ejecutar consultas hacia la base de datos. Esto me permite tener una idea clara del rendimiento de mi aplicación y detectar posibles cuellos de botella en las consultas.
+ ### Uso de "Eager Loading":
+  -He implementado la estrategia de "eager loading" en determinadas consultas de mi aplicación. Esta técnica me permite cargar relaciones asociadas de manera anticipada, lo que reduce drásticamente el número de consultas ejecutadas en la base de datos. Al cargar relaciones específicas de antemano, evito el problema de "N + 1" consultas, lo que a su vez mejora 
+   significativamente la eficiencia y el tiempo de respuesta de mi aplicación.
+ ### Uso de metodos para optimizar consultas:
+  -He aplicado métodos específicos de optimización de consultas provistos por Laravel, como "sync" y "attach". Estos métodos me permiten realizar operaciones de sincronización y vinculación de manera eficiente, reduciendo así la cantidad de consultas que se necesitan para realizar tareas como actualizar categorías asociadas a tareas. Esta optimización no solo 
+  agiliza las operaciones, sino que también contribuye a un mejor rendimiento general de la base de datos.
+
+  En conjunto, al utilizar estas estrategias, he logrado mejorar el rendimiento de mi aplicación al reducir el número de consultas realizadas, reduciendo la latencia y mejorando la experiencia del usuario. La combinación de Benchmarking, Eager Loading y métodos de optimización específicos me ha permitido crear una aplicación más rápida y eficiente
