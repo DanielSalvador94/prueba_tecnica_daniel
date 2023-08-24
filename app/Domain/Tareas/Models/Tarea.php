@@ -4,6 +4,9 @@ namespace App\Domain\Tareas\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Domain\Usuarios\Models\Usuario;
+use App\Domain\Categorias\Models\Categoria;
+;
 
 class Tarea extends Model
 {
@@ -16,7 +19,7 @@ class Tarea extends Model
 
   public function user()
   {
-    return $this->belongsTo(User::class, 'user_id');
+    return $this->belongsTo(Usuario::class, 'user_id');
   }
 
   public function categorias()

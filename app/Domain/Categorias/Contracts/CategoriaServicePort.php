@@ -2,8 +2,6 @@
 
 namespace App\Domain\Categorias\Contracts;
 
-Use App\Domain\Categorias\Models\Categoria;
-
 interface CategoriaServicePort
 
 {

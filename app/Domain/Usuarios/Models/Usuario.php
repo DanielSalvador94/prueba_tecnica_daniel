@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Domain\Users\Models;
+namespace App\Domain\Usuarios\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable;
 
   protected $table = 'users';
 
   /**
-    * The attributes that are mass assignable.
     *
     * @var array<int, string>
     */
@@ -25,7 +24,6 @@ class User extends Authenticatable
   ];
 
     /**
-     * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
@@ -35,7 +33,6 @@ class User extends Authenticatable
   ];
 
     /**
-     * The attributes that should be cast.
      *
      * @var array<string, string>
      */

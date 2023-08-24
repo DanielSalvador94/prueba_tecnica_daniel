@@ -1,0 +1,161 @@
+.regular-search-item {
+  border: 1px black solid;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-fields {
+  display: flex;
+  gap: 20px;
+}
+
+.search-field label {
+  font-weight: bold;
+}
+
+.search-field select,
+.search-field input {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  width: 150px;
+}
+
+.action-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.action-icon:hover {
+  color: #FFA500;
+  cursor: pointer;
+}
+
+.details-dialog {
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.detail-section {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+}
+
+.detail-section strong {
+  font-weight: bold;
+}
+
+.categoria-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.categoria-item {
+  padding: 5px 10px;
+  background-color: #22b986;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.completed-task {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+.delete-dialog-title {
+  background-color: #e74c3c;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog-close-icon {
+  cursor: pointer;
+}
+
+.delete-dialog-actions {
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.delete-btn {
+  background-color:red;
+  color: white;
+}
+
+.create-btn {
+  background-color: #1976D2;
+  color: white;
+}
+
+.cancel-btn {
+  margin-right: 10px;
+}
+
+.v-dialog--fullscreen {
+  max-width: none;
+}
+
+.create-form-dialog {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.v-text-field,
+.v-textarea,
+.multiselect__input,
+.datepicker-input {
+  max-width: 100%;
+}
+
+.v3dp__datepicker {
+  border: 1px solid #ccc !important;
+  padding: 8px;
+}
+
+.datepicker-container {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.datepicker-container label {
+  color: #3b37377d;
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.create-task-button {
+  background-color: #1976D2;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.create-task-button:hover {
+  background-color: #1565C0;
+}
+
+.create-task-button v-icon {
+  margin-right: 8px;
+  font-size: 18px;
+}

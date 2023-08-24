@@ -12,17 +12,19 @@ class TareaService implements TareaServicePort
   public function getAllTareas()
 
   {
-    return Tarea::with('user','categoriues')->get();
+    return Tarea::with('user','categorias')->get();
   }
 
   public function createTarea(array $data)
 
   {
-    $tarea = Tarea::create($data);
+    $categorias = isset($data['categorias_id']) ? $data['categorias_id'] : [];
+      unset($data['categorias_id']);
+      $tarea = Tarea::create($data);
 
-    if (isset($data['categorias'])) {
-        $tarea->categorias()->sync($data['categorias']);
-    }
+      if (!empty($categorias)) {
+        $tarea->categorias()->attach($categorias);
+      }
 
     return $tarea;
   }
@@ -30,22 +32,19 @@ class TareaService implements TareaServicePort
   public function getTareaByiD($id)
 
   {
-    return Tarea::findOrFail($id);
+    return Tarea::with('user', 'categorias')->findOrFail($id);
   }
 
   public function updateTarea(Tarea $tarea, array $data)
-
   {
     $tarea->update($data);
-
-    if (isset($data['categorias'])) {
-      $tarea->categorias()->sync($data['categorias']);
-    }
-    return $tarea;
+      if (isset($data['categorias'])) {
+        $tarea->categorias()->sync($data['categorias']);
+      }
+      return $tarea;
   }
 
   public function deleteTarea(Tarea $tarea)
-
   {
     $tarea->delete();
   }

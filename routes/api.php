@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TareaController;
+use App\Http\Controllers\Api\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('tareas', TareaController::class);
+Route::get('/categorias', [CategoriaController::class, 'index']);
+Route::put('/tareas/{id}/mark-as-completed', [TareaController::class, 'markAsCompleted']);
